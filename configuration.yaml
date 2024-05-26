@@ -1,0 +1,21 @@
+# yaml-language-server: $schema=https://raw.githubusercontent.com/asynchronous-flows/asyncflows/main/schemas/asyncflows_schema.json
+
+default_model:
+  model: ollama/llama3:8b
+  api_base: https://asyncflows.com/ollama
+  auth_token: AUTH_TOKEN_HERE
+  temperature: 1
+  max_output_tokens: 2000
+flow:
+  search_ddg:
+    action: duckduckgo_search
+    query:
+      var: question
+  configuration:
+    action: prompt
+    prompt:
+      - heading: DDG result
+        link: search_ddg.result
+      - text: summarize them for me
+
+default_output: configuration.result
